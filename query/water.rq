@@ -1,0 +1,86 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX :  <http://ex.org/>
+PREFIX ENVO: <http://purl.obolibrary.org/obo/ENVO_>
+PREFIX TEST: <http://purl.obolibrary.org/obo/TEST_>
+PREFIX PATO: <http://purl.obolibrary.org/obo/PATO_>
+PREFIX CHEBI: <http://purl.obolibrary.org/obo/CHEBI_>
+PREFIX STATO: <http://purl.obolibrary.org/obo/STATO_>
+PREFIX RO: <http://purl.obolibrary.org/obo/RO_>
+PREFIX BFO: <http://purl.obolibrary.org/obo/BFO_>
+PREFIX BSM: <http://purl.obolibrary.org/obo/BSM_>
+
+SELECT DISTINCT ?subject ?class ?count ?quantifier ?bnode5 ?numerator_class ?denom_class ?numerator_class_n ?denom_class_n ?numerator_class_d ?denom_class_d
+
+WHERE {
+?subject a :sample.
+
+# Samples with classes and counts
+?subject :has-term-annotation _:go.
+_:go rdf:type ?class;
+            :has-quantity ?count.
+
+###
+# Subclass query constraints
+?constraint_list rdfs:subClassOf* ENVO:00002006.  # example all waters
+
+OPTIONAL {
+
+?class owl:equivalentClass ?bnode.
+?bnode owl:intersectionOf ?bnode2.
+?bnode2 rdf:first ?quantifier;
+        rdf:rest ?bnode3.
+?bnode3 rdf:first ?bnode4 .
+?bnode4 owl:onProperty RO:0000052;
+  		owl:someValuesFrom ?bnode5.
+
+OPTIONAL {
+
+?bnode5 owl:intersectionOf ?bnode6.
+?bnode6 rdf:first ?numerator_class;
+        rdf:rest ?bnode7.
+?bnode7 rdf:first ?bnode8.
+?bnode8 owl:onProperty BFO:0000050;
+  		owl:someValuesFrom ?denom_class.
+
+OPTIONAL {
+##Additional bit to get recursive equivalences of numerator
+?numerator_class owl:equivalentClass ?bnode_n.
+?bnode_n owl:intersectionOf ?bnode2_n.
+?bnode2_n rdf:first ?quantifier_n;
+        rdf:rest ?bnode3_n.
+?bnode3_n rdf:first ?bnode4_n .
+?bnode4_n owl:onProperty RO:0000052;
+  		owl:someValuesFrom ?bnode5_n.
+?bnode5_n owl:intersectionOf ?bnode6_n.
+?bnode6_n rdf:first ?numerator_class_n;
+        rdf:rest ?bnode7_n.
+?bnode7_n rdf:first ?bnode8_n.
+?bnode8_n owl:onProperty BFO:0000050;
+  		owl:someValuesFrom ?denom_class_n.
+}
+
+OPTIONAL {
+##Additional bit to get recursive equivalences of denominator
+?denom_class owl:equivalentClass ?bnode_d.
+?bnode_d owl:intersectionOf ?bnode2_d.
+?bnode2_d rdf:first ?quantifier_d;
+        rdf:rest ?bnode3_d.
+?bnode3_d rdf:first ?bnode4_d .
+?bnode4_d owl:onProperty RO:0000052;
+  		owl:someValuesFrom ?bnode5_d.
+?bnode5_d owl:intersectionOf ?bnode6_d.
+?bnode6_d rdf:first ?numerator_class_d;
+        rdf:rest ?bnode7_d.
+?bnode7_d rdf:first ?bnode8_d.
+?bnode8_d owl:onProperty BFO:0000050;
+  		owl:someValuesFrom ?denom_class_d.
+}
+}
+}
+
+BIND(REPLACE(STR(?subject),"http://ex.org/","" ) AS ?sample).
+}
+
+HAVING (?class IN (?constraint_list)||?bnode5 IN (?constraint_list)||?numerator_class IN (?constraint_list)||?denom_class  IN (?constraint_list)||?numerator_class_n IN (?constraint_list)||?denom_class_n IN (?constraint_list) ||?numerator_class_d IN (?constraint_list)||?denom_class_d IN (?constraint_list))
