@@ -1,0 +1,17 @@
+PREFIX : <http://ex.org/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX TEST: <http://purl.obolibrary.org/obo/TEST_>
+
+CONSTRUCT {
+  ?URI a :sample;
+    :has-term-annotation [
+      a ?purl ;
+      :has-quantity ?countInt ;
+    ] .
+
+}
+WHERE {
+  BIND (URI(CONCAT('http://ex.org/', ?a)) AS ?URI)
+  BIND(IRI(REPLACE(STR(?b),"TEST:","http://purl.obolibrary.org/obo/TEST_" )) AS ?purl).
+  BIND (xsd:integer(?c) AS ?countInt)
+}

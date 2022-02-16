@@ -1,0 +1,70 @@
+@prefix :  <http://ex.org/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix TEST:  <http://purl.obolibrary.org/obo/TEST_> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+:sample_1  rdf:type           :sample ;
+        :has-term-annotation  _:b0 .
+
+_:b0    rdf:type       <http://purl.obolibrary.org/obo/TEST_-2_PATO:0000146_ENVO:00002006-> ;
+        :has-quantity  1 .
+
+:sample_2  rdf:type           :sample ;
+        :has-term-annotation  _:b1 .
+
+_:b1    rdf:type       <http://purl.obolibrary.org/obo/TEST_-2_PATO:0000146_ENVO:00002005-> ;
+        :has-quantity  9 .
+
+:sample_3  rdf:type           :sample ;
+        :has-term-annotation  _:b2 .
+
+_:b2    rdf:type       <http://purl.obolibrary.org/obo/TEST_-2_PATO:0000973_ENVO:00002011-> ;
+        :has-quantity  3 .
+
+:sample_4  rdf:type           :sample ;
+        :has-term-annotation  _:b3 .
+
+_:b3    rdf:type       <http://purl.obolibrary.org/obo/TEST_-2_PATO:0001842_ENVO:00002006-> ;
+        :has-quantity  28 .
+
+:sample_5  rdf:type           :sample ;
+        :has-term-annotation  _:b4 .
+
+_:b4    rdf:type       <http://purl.obolibrary.org/obo/TEST_-2_PATO:0001842_ENVO:00002005-> ;
+        :has-quantity  8 .
+
+:sample_6  rdf:type           :sample ;
+        :has-term-annotation  _:b5 .
+
+_:b5    rdf:type       <http://purl.obolibrary.org/obo/TEST_-2_PATO:0001842_ENVO:00002011-> ;
+        :has-quantity  1 .
+
+:sample_7  rdf:type           :sample ;
+        :has-term-annotation  _:b6 .
+
+_:b6    rdf:type       <http://purl.obolibrary.org/obo/TEST_-3_PATO:0000033_CHEBI:15379_ENVO:00002006-> ;
+        :has-quantity  4 .
+
+:sample_8  rdf:type           :sample ;
+        :has-term-annotation  _:b7 .
+
+_:b7    rdf:type       <http://purl.obolibrary.org/obo/TEST_-3_PATO:0000033_CHEBI:33262_ENVO:00002006-> ;
+        :has-quantity  3 .
+
+:sample_9  rdf:type           :sample ;
+        :has-term-annotation  _:b8 .
+
+_:b8    rdf:type       <http://purl.obolibrary.org/obo/TEST_-3_STATO:0000184_CHEBI:36928_CHEBI:36927-> ;
+        :has-quantity  8 .
+
+:sample_10  rdf:type          :sample ;
+        :has-term-annotation  _:b9 .
+
+_:b9    rdf:type       <http://purl.obolibrary.org/obo/TEST_-3_STATO:0000184_CHEBI:33818_CHEBI:33815-> ;
+        :has-quantity  31 .
+
+:sample_11  rdf:type          :sample ;
+        :has-term-annotation  _:b10 .
+
+_:b10   rdf:type       <http://purl.obolibrary.org/obo/TEST_-3_STATO:0000184_TEST_-3_STATO:0000184_CHEBI:36928_CHEBI:36927-_TEST_-3_STATO:0000184_CHEBI:33818_CHEBI:33815--> ;
+        :has-quantity  12 .
