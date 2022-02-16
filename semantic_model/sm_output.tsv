@@ -1,0 +1,9 @@
+Concept string	Entity	Sub-Descriptor	Sub-Descriptor2	Sub-Descriptor3	Quantifier	Sub-Quantifier1	Matrix Biome	Matrix Context	Matrix Material	Unit	Notes
+temperature of seawater	ENVO:00002006				PATO:0000146		ENVO:00002030	ENVO:01000326	ENVO:00002006	unit:Cel	
+ seawater chlorophyll a concentration	CHEBI:18230				PATO:0000033		ENVO:00002030	ENVO:01000326	ENVO:00002149	unit:mmol.L-1	
+concentration of  dioxygen in seawater	CHEBI:15379				PATO:0000033		ENVO:00002030	ENVO:01000326	ENVO:00002006	unit:mmol.L-1	
+ratio of carbon13 to carbon 14 isotopes	CHEBI:36928	CHEBI:36927			STATO:0000184		ENVO:00002030	ENVO:01000326	ENVO:00002006		
+ratio of oxygen 16 to oxygen 18 isotopes	CHEBI:33818	CHEBI:33815			STATO:0000184		ENVO:00002030	ENVO:01000326	ENVO:00002006		
+"ratio of ""carbon13 to carbon 14 isotopes"" to ""oxygen 16 to oxygen 18 isotopes"""	CHEBI:36928	CHEBI:36927	CHEBI:33818	CHEBI:33815	STATO:0000184	STATO:0000184	ENVO:00002030	ENVO:01000326	ENVO:00002006		Here the order matters
+"ratio of ""ratio of oxygen 16 to oxygen 18 isotopes"" to carbon13"	CHEBI:33818	CHEBI:33815	CHEBI:15379		STATO:0000184		ENVO:00002030	ENVO:01000326	ENVO:00002006		
+Average air temperature					PATO:0000146	STATO:0000573	ENVO:00002030	ENVO:01000326	ENVO:00002005	unit:Cel	"To get to an EA pattern the subquantifier needs to chain before quantifier, or we use the EAL pattern for this"
